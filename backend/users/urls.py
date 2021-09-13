@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserCreateView, IsUserLoggedIn, LogoutAndBlacklistRefreshTokenForUserView
+from .views import UserCreateView, IsUserLoggedIn, LogoutAndBlacklistRefreshTokenForUserView, ProfileDetailAPIView
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('logged_in/', IsUserLoggedIn.as_view(), name=('user_logged')),
     #blacklist token and logout
     path('logout/', LogoutAndBlacklistRefreshTokenForUserView.as_view(), name=('user_logout')),
+    path('profile/<slug:slug>/', ProfileDetailAPIView.as_view(), name=('profile-view')),
 ]

@@ -8,6 +8,7 @@ import Login from './Login';
 import axiosInstance from './AxiosAPI';
 import CreateThread from './CreateThread';
 import CreatePost from './CreatePost';
+import CreateUser from './CreateUser';
 
 const Navbar = () => {
 
@@ -50,10 +51,12 @@ const Navbar = () => {
                     { isLoggedIn ? 
                     <Tab label='logout' onClick={handleLogout} /> 
                     : <Tab label='Login' component={Link} to='/login/' /> }
+                    <Tab label='create_account' component={Link} to='users/create/' />
                 </Tabs>
             </AppBar>
             <Switch>
                 <Route exact path={'/'} component={Categories} />
+                <Route exact path={'/users/create/'} component={CreateUser} />
                 <Route exact path={'/threads/:id'} component={Threads} />
                 <Route exact path={'/posts/:id/'} component={Posts} />
                 <Route exact path={'/login/'} component={Login} />

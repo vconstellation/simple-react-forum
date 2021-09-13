@@ -1,16 +1,19 @@
+from .models import Profile
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import permissions, status
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your views here.
 
 #Create User view
-class UserCreateView(APIView):
+class UserCreateView(CreateAPIView):
     permission_classes = (permissions.AllowAny, )
     authentication_classes = ()
+    serializer_class = UserSerializer
 
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
@@ -42,3 +45,12 @@ class LogoutAndBlacklistRefreshTokenForUserView(APIView):
 class IsUserLoggedIn(APIView):
     def get(self, request):
         return Response(status=status.HTTP_200_OK)
+
+
+#Profile View
+class ProfileDetailAPIView(RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    lookup_field = 'slug'
+
+
