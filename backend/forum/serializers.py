@@ -10,8 +10,9 @@ class CategoryListSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+    #this returns the no. of threads in the category
     def get_threads_count(self, obj):
-        threads_count = Thread.objects.filter().count()
+        threads_count = Thread.objects.filter(category=obj).count()
         return threads_count
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
@@ -37,18 +38,27 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
             return []
 
 class ThreadListSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Thread
         fields = '__all__'
 
 #Helper class
 class ThreadPostSerializer(serializers.ModelSerializer):
+
+    username = serializers.SerializerMethodField()
+
+    def get_username(self, obj):
+        return obj.post_author_name()
+
     class Meta:
         model = Post
         fields = '__all__'
 
 class ThreadDetailSerializer(serializers.ModelSerializer):
     posts = ThreadPostSerializer(many=True, read_only=True)
+
+
     class Meta:
         model = Thread
         fields = ['thread_name', 'posts']

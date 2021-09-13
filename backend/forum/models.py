@@ -21,6 +21,12 @@ class Thread(models.Model):
     def __str__(self):
         return self.thread_name
 
+    def get_latest_post_author(self):
+        username = Post.objects.filter(thread=self).order_by('-created_at')[:1]
+        return username
+
+
+
 
 
 class Post(models.Model):
@@ -33,3 +39,6 @@ class Post(models.Model):
     def __str__(self):
         truncated_msg = Truncator(self.msg)
         return truncated_msg.chars(20)
+
+    def post_author_name(self):
+        return self.post_author.username

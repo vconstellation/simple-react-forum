@@ -22,13 +22,14 @@ const Posts = () => {
                 <h2>Posts</h2>
                 <hr />
                 {posts && posts.posts.map((item) => (
-                    <Typography component={Paper}>
-                        Author: { item.post_author }
+                    <Typography component={Paper} style={{ margin: '30px', padding: '30px' }}>
+                        Author: { item.username }
                         <br />
                         {item.msg}
                     </Typography>
-
+                    
                 ))}
+                <br />
             </Container>
         </div>
     )
