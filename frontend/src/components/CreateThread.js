@@ -7,7 +7,7 @@ const CreateThread = () => {
     const [threadName, setThreadName] = useState(null);
     const [username, setUsername] = useState(null);
 
-    const { slug } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         axiosInstance.get('api/forum/user/').then((res) => {
@@ -29,7 +29,8 @@ const CreateThread = () => {
             axiosInstance.post('api/forum/threads/create_new/', {
                 thread_name: threadName,
                 thread_author: username,
-                category_id: slug,
+                category: id,
+                category_id: id
                 }
             ).then((res) => (
                 console.log(res)
@@ -48,7 +49,7 @@ const CreateThread = () => {
             <br />
             { username }
             <br />
-            { slug }
+            { id }
             <form onSubmit={handleSubmit}>
                 <label>
                     Thread Name:

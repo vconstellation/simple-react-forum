@@ -88,7 +88,6 @@ class CreatePostSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CreateThreadSerializer(serializers.ModelSerializer):
-    category = serializers.SlugRelatedField(slug_field = 'category_id', read_only=True)
 
     class Meta:
         model = Thread

@@ -54,10 +54,10 @@ const Navbar = () => {
             </AppBar>
             <Switch>
                 <Route exact path={'/'} component={Categories} />
-                <Route exact path={'/threads/:slug'} component={Threads} />
+                <Route exact path={'/threads/:id'} component={Threads} />
                 <Route exact path={'/posts/:id/'} component={Posts} />
                 <Route exact path={'/login/'} component={Login} />
-                <Route exact path={'/threads/:slug/create_new'} component={CreateThread} />
+                <Route exact path={'/threads/:id/create_new'} component={CreateThread} />
                 <Route exact path={'/posts/:id/create_new'} component={CreatePost} />
             </Switch>
         </div>

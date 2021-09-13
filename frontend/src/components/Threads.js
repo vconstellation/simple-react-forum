@@ -8,12 +8,12 @@ const Threads = () => {
 
     const [threads, setThreads] = useState(null);
 
-    let { slug } = useParams();
+    let { id } = useParams();
     
     
 
     useEffect(() => {
-        axiosInstance.get(`/api/forum/category/${slug}/`).then((res) => {
+        axiosInstance.get(`/api/forum/category/${id}/`).then((res) => {
             const data = res.data;
             setThreads(data);
         })
@@ -47,7 +47,7 @@ const Threads = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Link to={`/threads/${slug}/create_new/`}>Create new</Link>      
+                <Link to={`/threads/${id}/create_new/`}>Create new</Link>      
             </Container>
         </div>
     )

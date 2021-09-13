@@ -6,7 +6,7 @@ from .views import CategoryListAPIView, CategoryDetailAPIView, ThreadDetailAPIVi
 
 urlpatterns = [
     path('', CategoryListAPIView.as_view(), name='category-list'),
-    path('category/<slug:slug>/', CategoryDetailAPIView.as_view(), name='category-detail'),
+    path('category/<int:pk>/', CategoryDetailAPIView.as_view(), name='category-detail'),
     path('threads/', ThreadListAPIView.as_view(), name='thread-list'),
     path('threads/<int:pk>/', ThreadDetailAPIView.as_view(), name='thread-detail'),
     path('posts/', PostListAPIView.as_view(), name='post-list'),

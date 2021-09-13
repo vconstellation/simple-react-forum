@@ -37,7 +37,7 @@ const Categories = () => {
                         {categories && categories.map((item) => (
                             <TableRow key={item.id}>
                                 <TableCell component='th' scope='row'>
-                                    <Link to={`/threads/${item.slug}`} key={item.id}>{ item.category_name } </Link>
+                                    <Link to={`/threads/${item.id}`} key={item.id}>{ item.category_name } </Link>
                                 </TableCell>
                                 <TableCell component='th' scope='row'>{ item.threads_count }</TableCell>
                             </TableRow>
