@@ -47,9 +47,9 @@ const Navbar = () => {
                 <Tabs>
                     <Tab label='Home' component={Link} to='/' />
                     <Tab label='Categories' component={Link} to='#' />
-                    <button onClick={handleLogout}>Logout</button> 
-                    <t> { isLoggedIn ? 'Logged in' : 'Not logged in' }</t>  
-                    <Tab label='Login' component={Link} to='/login/' />
+                    { isLoggedIn ? 
+                    <Tab label='logout' onClick={handleLogout} /> 
+                    : <Tab label='Login' component={Link} to='/login/' /> }
                 </Tabs>
             </AppBar>
             <Switch>

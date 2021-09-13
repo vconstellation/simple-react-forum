@@ -30,8 +30,9 @@ const Posts = () => {
                     
                 ))}
                 <br />
+                <Link to={`/posts/${id}/create_new/`}>Create new post</Link> 
             </Container>
-            <Link to={`/posts/${id}/create_new/`}>Create new post</Link> 
+            
         </div>
     )
 
