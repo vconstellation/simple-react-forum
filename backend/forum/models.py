@@ -22,6 +22,7 @@ class Thread(models.Model):
         return self.thread_name
 
 
+
 class Post(models.Model):
     msg = models.TextField(max_length=4000)
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='posts')

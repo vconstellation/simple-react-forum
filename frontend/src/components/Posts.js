@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@material-ui/core';
 
 const Posts = () => {
 
@@ -17,10 +18,18 @@ const Posts = () => {
 
     return (
         <div>
-            <h2>Posts</h2>
-            {posts && posts.posts.map((item) => (
-                <h4 key={item.id}>{ item.msg }</h4>
-            ))}
+            <Container maxWidth='lg' component={Paper} style={{ backgroundColor: '#cfe8fc'}}>      
+                <h2>Posts</h2>
+                <hr />
+                {posts && posts.posts.map((item) => (
+                    <Typography component={Paper}>
+                        Author: { item.post_author }
+                        <br />
+                        {item.msg}
+                    </Typography>
+
+                ))}
+            </Container>
         </div>
     )
 

@@ -45,14 +45,11 @@ const Navbar = () => {
                 <Tabs>
                     <Tab label='Home' component={Link} to='/' />
                     <Tab label='Categories' component={Link} to='#' />
-                    
+                    <button onClick={handleLogout}>Logout</button> 
+                    <t> { isLoggedIn ? 'Logged in' : 'Not logged in' }</t>  
                     <Tab label='Login' component={Link} to='/login/' />
                 </Tabs>
             </AppBar>
-            <div>
-                <button onClick={handleLogout}>Logout</button> 
-                <t> { isLoggedIn ? 'Logged in' : 'Not logged in' }</t> 
-            </div>
             <Switch>
                 <Route exact path={'/'} component={Categories} />
                 <Route exact path={'/threads/:slug'} component={Threads} />

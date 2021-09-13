@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
 import { Link } from 'react-router-dom';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 
 const Categories = () => {
 
@@ -22,10 +23,32 @@ const Categories = () => {
 
     return (
         <div>
-            <h1>Kategorie</h1>
-            {categories && categories.map((item) => (
-                <Link to={`/threads/${item.slug}`} key={item.id}>{ item.category_name } </Link>
-            ))}
+            <Container maxWidth='lg' style={{ backgroundColor: '#cfe8fc'}}>
+            
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Category</TableCell>
+                                <TableCell># of threads</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {categories && categories.map((item) => (
+                            <TableRow key={item.id}>
+                                <TableCell component='th' scope='row'>
+                                    <Link to={`/threads/${item.slug}`} key={item.id}>{ item.category_name } </Link>
+                                </TableCell>
+                                <TableCell component='th' scope='row'>{ item.threads_count }</TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+
+                
+            </Container>
+            
         </div>
     )
 }

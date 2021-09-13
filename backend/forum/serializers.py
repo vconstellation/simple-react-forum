@@ -3,9 +3,16 @@ from .models import Category, Thread, Post
 from django.contrib.auth.models import User
 
 class CategoryListSerializer(serializers.ModelSerializer):
+
+    threads_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
         fields = '__all__'
+
+    def get_threads_count(self, obj):
+        threads_count = Thread.objects.filter().count()
+        return threads_count
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
     threads = serializers.SerializerMethodField()
@@ -20,6 +27,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
             return {
                 'id': thread.id,
                 'name': thread.thread_name,
+                'last_updated': thread.last_updated,
             }
 
         try:
