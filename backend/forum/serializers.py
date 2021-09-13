@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.relations import SlugRelatedField
 from .models import Category, Thread, Post
 from django.contrib.auth.models import User
 
@@ -38,10 +39,11 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
             return []
 
 class ThreadListSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field = 'category', read_only=True)
 
     class Meta:
         model = Thread
-        fields = '__all__'
+        fields = ['thread_name', 'last_updated', 'thread_author', 'category']
 
 #Helper class
 class ThreadPostSerializer(serializers.ModelSerializer):
@@ -73,3 +75,21 @@ class PostListSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
 
+#Fetch current logged in user
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['pk']
+
+#create post class test
+class CreatePostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+class CreateThreadSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field = 'category_id', read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = '__all__'

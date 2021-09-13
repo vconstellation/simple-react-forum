@@ -6,6 +6,8 @@ import Threads from './Threads';
 import Posts from './Posts';
 import Login from './Login';
 import axiosInstance from './AxiosAPI';
+import CreateThread from './CreateThread';
+import CreatePost from './CreatePost';
 
 const Navbar = () => {
 
@@ -55,6 +57,8 @@ const Navbar = () => {
                 <Route exact path={'/threads/:slug'} component={Threads} />
                 <Route exact path={'/posts/:id/'} component={Posts} />
                 <Route exact path={'/login/'} component={Login} />
+                <Route exact path={'/threads/:slug/create_new'} component={CreateThread} />
+                <Route exact path={'/posts/:id/create_new'} component={CreatePost} />
             </Switch>
         </div>
     )

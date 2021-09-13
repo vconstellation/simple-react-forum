@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@material-ui/core';
 
@@ -31,6 +31,7 @@ const Posts = () => {
                 ))}
                 <br />
             </Container>
+            <Link to={`/posts/${id}/create_new/`}>Create new post</Link> 
         </div>
     )
 
