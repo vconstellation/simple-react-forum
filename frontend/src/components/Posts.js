@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@material-ui/core';
+import UpdatePost from "./UpdatePost";
 
 const Posts = () => {
 
@@ -16,6 +17,18 @@ const Posts = () => {
         })
     }, [])
 
+    // this need to get removed and made into helper class
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        axiosInstance.get('api/forum/user/').then((res) => {
+            const data = res.data;
+            const username = data.username;
+            setUsername(username);
+        })
+    }, [])
+
+
     return (
         <div>
             <Container maxWidth='lg' component={Paper} style={{ backgroundColor: '#cfe8fc'}}>      
@@ -26,11 +39,16 @@ const Posts = () => {
                         Author: { item.username }
                         <br />
                         {item.msg}
+                        <br />
+                        { username == item.username ? <UpdatePost value={item.id} />  : 'not hello' }
+                        <br />
+                        
                     </Typography>
                     
                 ))}
                 <br />
-                <Link to={`/posts/${id}/create_new/`}>Create new post</Link> 
+                <Link to={`/posts/${id}/create_new/`}>Create new post</Link>
+                
             </Container>
             
         </div>

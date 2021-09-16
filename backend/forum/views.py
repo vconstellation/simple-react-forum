@@ -2,10 +2,10 @@ from django.db.models import query
 from django.shortcuts import render
 from rest_framework import viewsets, permissions, status
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import CategoryListSerializer, CategoryDetailSerializer, ThreadListSerializer, ThreadDetailSerializer, PostListSerializer, UserDetailSerializer, CreateThreadSerializer, CreatePostSerializer
+from .serializers import CategoryListSerializer, CategoryDetailSerializer, ThreadListSerializer, ThreadDetailSerializer, PostListSerializer, UserDetailSerializer, CreateThreadSerializer, CreatePostSerializer, UpdatePostSerializer
 from .models import Category, Thread, Post
 
 # Create your views here.
@@ -32,7 +32,10 @@ class PostListAPIView(ListAPIView):
     serializer_class = PostListSerializer
 
 
-#testing CRUD code of block
+##testing CRUD code of block
+
+#Create
+
 class ThreadCreateAPIView(CreateAPIView):
     queryset = Thread.objects.all()
     serializer_class = CreateThreadSerializer
@@ -55,6 +58,12 @@ class ThreadCreateAPIView(CreateAPIView):
 class PostCreateAPIView(CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = CreatePostSerializer
+
+#Update block
+
+class PostUpdateAPIView(UpdateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = UpdatePostSerializer
 
 #Fetching current, logged in user
 @api_view(['GET'])

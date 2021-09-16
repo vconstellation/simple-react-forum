@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import include, path
 from django.contrib import admin
 
-from .views import CategoryListAPIView, CategoryDetailAPIView, ThreadDetailAPIView, ThreadListAPIView, PostListAPIView, ThreadCreateAPIView, PostCreateAPIView, current_user
+from .views import CategoryListAPIView, CategoryDetailAPIView, ThreadDetailAPIView, ThreadListAPIView, PostListAPIView, ThreadCreateAPIView, PostCreateAPIView, PostUpdateAPIView, current_user
 
 urlpatterns = [
     path('', CategoryListAPIView.as_view(), name='category-list'),
@@ -13,6 +13,7 @@ urlpatterns = [
     #CRUD paths
     path('threads/create_new/', ThreadCreateAPIView.as_view(), name='thread-create'),
     path('posts/create_new/', PostCreateAPIView.as_view(), name='post-create'),
+    path('posts/update/<int:pk>/', PostUpdateAPIView.as_view(), name='post-update'),
     #Fetch current username
     path('user/', current_user, name='current-user'),
 ]

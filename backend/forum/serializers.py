@@ -79,7 +79,7 @@ class PostListSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['pk']
+        fields = ['pk', 'username']
 
 #create post class test
 class CreatePostSerializer(serializers.ModelSerializer):
@@ -87,8 +87,28 @@ class CreatePostSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
 
+
 class CreateThreadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Thread
         fields = '__all__'
+
+#update post
+
+class UpdatePostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+    #override the update in order to
+    #intercept the data sent by the axios
+    #and check whether the user editing the post
+    #is the same as the post's author
+
+    #this also should raise some error
+    #but for now it will do
+    def update(self, instance, validated_data):
+        updating_user = validated_data.get('post_author')
+        if (updating_user == instance.post_author):
+            return super().update(instance, validated_data)
