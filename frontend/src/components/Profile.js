@@ -16,16 +16,24 @@ const Profile = () => {
         })
     }, [])
 
+
     return (
         <div>
             
-            { profile }
+            { profile && 
+                <div>
+                    { slug }
+                    <br />
+                    { profile.bio }
+                </div> 
+            }
+            {/* { profile.user.username } */}
             {/* since there is only one field in the Profile API, I can't map over it */}
-            { profile && profile.map((item) => (
+            {/* { profile && profile.map((item) => (
                 <div>
                     { item.bio }
                 </div>
-            ))}
+            ))} */}
         </div>
     )
 }

@@ -8,9 +8,10 @@ from .models import Profile
 
 #Profile serializer
 class ProfileSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Profile
-        fields = ['bio', 'user']
+        fields = ['bio']
 
 
 #Registering a new user
