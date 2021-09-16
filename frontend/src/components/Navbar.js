@@ -9,20 +9,35 @@ import axiosInstance from './AxiosAPI';
 import CreateThread from './CreateThread';
 import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
+import Profile from './Profile';
 
 const Navbar = () => {
 
     // checks if user is logged in, currently doesnt refres when user logs out
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+    // useEffect(() => {
+    //     {
+    //         axiosInstance.get('api/users/logged_in/').then((res) => {
+    //             if (res) {
+    //                 setIsLoggedIn(true);
+    //             }
+    //         })
+    //     } 
+    // }, [])
+
+    const [username, setUsername] = useState(null);
+
     useEffect(() => {
-        {
-            axiosInstance.get('api/users/logged_in/').then((res) => {
-                if (res) {
-                    setIsLoggedIn(true);
-                }
-            })
-        } 
+        axiosInstance.get('api/forum/user/').then((res) => {
+            if (res) {
+                const data = res.data;
+                const username = data.username;
+                setUsername(username);
+                setIsLoggedIn(true);
+            }
+
+        })
     }, [])
 
     // logout and blacklist token logic:
@@ -52,6 +67,7 @@ const Navbar = () => {
                     <Tab label='logout' onClick={handleLogout} /> 
                     : <Tab label='Login' component={Link} to='/login/' /> }
                     <Tab label='create_account' component={Link} to='users/create/' />
+                    <Tab label={username} component={Link} to={`/users/profile/${username}/`} />
                 </Tabs>
             </AppBar>
             <Switch>
@@ -62,6 +78,7 @@ const Navbar = () => {
                 <Route exact path={'/login/'} component={Login} />
                 <Route exact path={'/threads/:id/create_new'} component={CreateThread} />
                 <Route exact path={'/posts/:id/create_new'} component={CreatePost} />
+                <Route exact path={'/users/profile/:slug/'} component={Profile} />
             </Switch>
         </div>
     )

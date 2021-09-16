@@ -10,7 +10,7 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['bio']
+        fields = ['bio', 'user']
 
 
 #Registering a new user
