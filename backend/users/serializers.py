@@ -13,6 +13,18 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ['bio', 'user']
 
+    #override the update in order to
+    #intercept the data sent by the axios
+    #and check whether the user editing the post
+    #is the same as the post's author
+
+    #this also should raise some error
+    #but for now it will do
+    def update(self, instance, validated_data):
+        updating_bio = validated_data.get('user')
+        if (updating_bio == instance.user):
+            return super().update(instance, validated_data)
+
 
 #Registering a new user
 class UserSerializer(serializers.ModelSerializer):
