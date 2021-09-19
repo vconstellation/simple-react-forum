@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axiosInstance from "./AxiosAPI";
+import UpdateProfile from "./UpdateProfile";
 
 
 const Profile = () => {
@@ -25,6 +26,11 @@ const Profile = () => {
                     { slug }
                     <br />
                     { profile.bio }
+                    { profile.id }
+                    <hr />
+                    Tu bedzie update:
+                    <br />
+                    <UpdateProfile value={ profile.user } />
                 </div> 
             }
             {/* { profile.user.username } */}

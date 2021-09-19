@@ -1,5 +1,5 @@
 from .models import Profile
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.response import Response
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -53,4 +53,8 @@ class ProfileDetailAPIView(RetrieveAPIView):
     serializer_class = ProfileSerializer
     lookup_field = 'slug'
 
+class ProfileUpdateAPIView(UpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    lookup_field = 'slug'
 
