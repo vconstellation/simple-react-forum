@@ -23,10 +23,14 @@ const Profile = () => {
             
             { profile && 
                 <div>
+                    name:
                     { slug }
                     <br />
+                    bio:
                     { profile.bio }
-                    { profile.id }
+                    <br />
+                    No. of posts:
+                    { profile.posts } 
                     <hr />
                     Tu bedzie update:
                     <br />

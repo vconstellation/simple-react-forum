@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Profile
+from forum.models import Post
 
 
 
@@ -9,9 +10,15 @@ from .models import Profile
 #Profile serializer
 class ProfileSerializer(serializers.ModelSerializer):
 
+    # adds a field which calls upon the get_posts_count() method from the Profile's model;
+    posts = serializers.SerializerMethodField()
+
+    def get_posts(self, obj):
+        return obj.get_posts_count()
+
     class Meta:
         model = Profile
-        fields = ['bio', 'user']
+        fields = ['bio', 'user', 'posts']
 
     #override the update in order to
     #intercept the data sent by the axios

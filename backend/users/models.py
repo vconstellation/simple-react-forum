@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from django.utils.text import slugify
+from forum.models import Post
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,3 +24,7 @@ class Profile(models.Model):
         #     img = Image.open(self.avatar.path).resize(output_size)
         #     img.thumbnail(output_size)
         #     img.save(self.avatar.path)
+
+    #gets Post model and filters by the Profile's associated User;
+    def get_posts_count(self):
+        return Post.objects.filter(post_author=self.user).count()
