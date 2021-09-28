@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from .models import Category, Thread, Post
@@ -58,12 +59,25 @@ class ThreadPostSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ThreadDetailSerializer(serializers.ModelSerializer):
-    posts = ThreadPostSerializer(many=True, read_only=True)
-
+    # commented out posts were the original, un-paginated version of the code
+    # posts = ThreadPostSerializer(many=True, read_only=True)
+    posts = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
         fields = ['thread_name', 'posts']
+
+    # since the default django rest framework pagination doens't work with merged / nested serializers
+    # i had to write my own pagination functionality
+    def get_posts(self, obj):
+        page_size = self.context['request'].query_params.get('size') or 4
+        paginator = Paginator(obj.posts.all(), page_size)
+        page = self.context['request'].query_params.get('page') or 1
+
+        result = paginator.page(page)
+        serializer = ThreadPostSerializer(result, many=True)
+
+        return serializer.data
 
 class PostListSerializer(serializers.ModelSerializer):
     thread = serializers.HyperlinkedRelatedField(

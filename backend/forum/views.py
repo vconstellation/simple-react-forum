@@ -8,6 +8,8 @@ from rest_framework.decorators import api_view
 from .serializers import CategoryListSerializer, CategoryDetailSerializer, ThreadListSerializer, ThreadDetailSerializer, PostListSerializer, UserDetailSerializer, CreateThreadSerializer, CreatePostSerializer, UpdatePostSerializer
 from .models import Category, Thread, Post
 
+
+
 # Create your views here.
 
 class CategoryListAPIView(ListAPIView):

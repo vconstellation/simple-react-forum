@@ -8,14 +8,31 @@ const Posts = () => {
 
     const [posts, setPosts] = useState(null);
 
+    const [currentPage, setCurrentPage] = useState(1);
+
     const { id } = useParams();
 
+    // pagination code block
+    const goToNextPage = () => {
+        setCurrentPage((page) => page + 1);
+    }
+
+    const goToPreviousPage = () => {
+        setCurrentPage((page) => page - 1);
+    }
+
+    const changePage = (event) => {
+        const pageNumber = Number(event.target.value);
+        setCurrentPage(pageNumber);
+    }
+
+
     useEffect(() => {
-        axiosInstance.get(`/api/forum/threads/${id}`).then((res) => {
+        axiosInstance.get(`/api/forum/threads/${id}/?page=${currentPage}`).then((res) => {
             const data = res.data;
             setPosts(data);
         })
-    }, [])
+    }, [currentPage])
 
     // this need to get removed and made into helper class
     const [username, setUsername] = useState(null);
@@ -48,6 +65,18 @@ const Posts = () => {
                 ))}
                 <br />
                 <Link to={`/posts/${id}/create_new/`}>Create new post</Link>
+
+                <hr />
+                <div>
+                    Current page: 
+                    { currentPage }
+                    <br />
+                    Next page:
+                    <button onClick={goToNextPage}>Click me </button>
+                    <br />
+                    Previous page:
+                    <button onClick={goToPreviousPage}> Click me </button>
+                </div>
                 
             </Container>
             
