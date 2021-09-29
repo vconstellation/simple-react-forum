@@ -2,9 +2,32 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
 import { Link } from 'react-router-dom';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, makeStyles } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 
 const Categories = () => {
+
+    // styles block
+
+    const catStyles = {
+        backgroundColor: '#4E4E50',
+        marginTop: '50px',
+        paddingTop: '15px',
+        paddingBottom: '15px',
+    }
+
+    const tabStyles = {
+        backgroundColor: '#6F2232',
+        
+    }
+
+    const fontStyle = {
+        color: 'white',
+    }
+
+
+
+    // end of block
 
     const [categories, setCategories] = useState(null);
 
@@ -23,23 +46,23 @@ const Categories = () => {
 
     return (
         <div>
-            <Container maxWidth='lg' style={{ backgroundColor: '#cfe8fc'}}>
-            
-                <TableContainer component={Paper}>
+            <Container maxWidth='lg' style={catStyles}>
+                
+                <TableContainer component={Paper} style={tabStyles}>
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Category</TableCell>
-                                <TableCell># of threads</TableCell>
+                                <TableCell style={fontStyle}>Category</TableCell>
+                                <TableCell style={fontStyle}># of threads</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                         {categories && categories.map((item) => (
                             <TableRow key={item.id}>
                                 <TableCell component='th' scope='row'>
-                                    <Link to={`/threads/${item.id}`} key={item.id}>{ item.category_name } </Link>
+                                    <Link to={`/threads/${item.id}`} key={item.id} style={fontStyle}>{ item.category_name } </Link>
                                 </TableCell>
-                                <TableCell component='th' scope='row'>{ item.threads_count }</TableCell>
+                                <TableCell component='th' scope='row' style={fontStyle}>{ item.threads_count }</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>

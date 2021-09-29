@@ -26,6 +26,14 @@ const Navbar = () => {
     //     } 
     // }, [])
 
+    // styles block
+
+    const navbarStyle = {
+        backgroundColor: '#950740',
+    }
+
+    // end of block
+
     const [username, setUsername] = useState(null);
 
     useEffect(() => {
@@ -59,7 +67,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <AppBar position='static'>
+            <AppBar style={navbarStyle} position='static'>
                 <Tabs>
                     <Tab label='Home' component={Link} to='/' />
                     <Tab label='Categories' component={Link} to='#' />
