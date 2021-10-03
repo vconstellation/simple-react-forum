@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 import axiosInstance from './AxiosAPI';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
 
 const Threads = () => {
+
+    // style const
+
+    const thrStyles = {
+        backgroundColor: '#E1E6F0',
+        marginTop: '50px',
+        paddingTop: '15px',
+        paddingBottom: '15px',
+    }
+
+    // end of styles
 
     const [threads, setThreads] = useState(null);
 
@@ -22,7 +33,7 @@ const Threads = () => {
 
     return (
         <div>
-            <Container maxWidth='lg' style={{ backgroundColor: '#cfe8fc'}}>      
+            <Container maxWidth='lg' style={thrStyles}>      
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
@@ -47,7 +58,8 @@ const Threads = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Link to={`/threads/${id}/create_new/`}>Create new</Link>      
+                <Button variant='outlined' href={`/threads/${id}/create_new/`} color='primary'>Create new</Button>
+    
             </Container>
         </div>
     )

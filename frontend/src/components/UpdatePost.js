@@ -51,8 +51,7 @@ const UpdatePost = (props) => {
             Update Post
             <form onSubmit={handleSubmit}>
                 <label>
-                    Post msg:
-                    <input name='Post msg' type='text' value={postMsg} onChange={onChangePostMsg} />
+                    <textarea name='Post msg' type='text' value={postMsg} onChange={onChangePostMsg} />
                 </label>
                 <input type='submit' value='Submit' />
                 <h1>{ props.value }</h1>

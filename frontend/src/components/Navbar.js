@@ -29,7 +29,7 @@ const Navbar = () => {
     // styles block
 
     const navbarStyle = {
-        backgroundColor: '#950740',
+        backgroundColor: '#4E699D',
     }
 
     // end of block

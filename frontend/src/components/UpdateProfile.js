@@ -44,11 +44,10 @@ const UpdateProfile = (props) => {
             Update Profile
             <form onSubmit={handleSubmit}>
                 <label>
-                    New bio:
-                    <input name='New bio' type='text' value={newBio} onChange={onChangeBioField} />
+                    <textarea name='New bio' type='text' value={newBio} onChange={onChangeBioField} />
                 </label>
+                <br />
                 <input type='submit' value='Submit' />
-                <h1>{ props.value }</h1>
             </form>
         </div>
     )

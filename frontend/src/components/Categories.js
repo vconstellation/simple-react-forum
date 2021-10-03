@@ -10,19 +10,19 @@ const Categories = () => {
     // styles block
 
     const catStyles = {
-        backgroundColor: '#4E4E50',
+        backgroundColor: '#E1E6F0',
         marginTop: '50px',
         paddingTop: '15px',
         paddingBottom: '15px',
     }
 
     const tabStyles = {
-        backgroundColor: '#6F2232',
+        backgroundColor: '#CFD8E7',
         
     }
 
     const fontStyle = {
-        color: 'white',
+        color: 'black',
     }
 
 
@@ -48,7 +48,7 @@ const Categories = () => {
         <div>
             <Container maxWidth='lg' style={catStyles}>
                 
-                <TableContainer component={Paper} style={tabStyles}>
+                <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
                             <TableRow>

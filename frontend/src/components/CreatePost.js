@@ -9,7 +9,7 @@ const CreatePost = () => {
 
     const { id } = useParams();
 
-
+    // this need to get removed and made into helper class
     useEffect(() => {
         axiosInstance.get('api/forum/user/').then((res) => {
             const data = res.data;
@@ -34,7 +34,7 @@ const CreatePost = () => {
                 thread_id: id,
                 }
             ).then((res) => (
-                console.log(res)
+                window.location.reload()
             ))
         } catch (e) {
             throw e;
@@ -50,7 +50,7 @@ const CreatePost = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Post msg:
-                    <input name='Post msg' type='text' value={postMsg} onChange={onChangePostMsg} />
+                    <textarea name='Post msg' type='text' value={postMsg} onChange={onChangePostMsg} />
                 </label>
                 <input type='submit' value='Submit' />
             </form>
