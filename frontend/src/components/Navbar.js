@@ -16,16 +16,6 @@ const Navbar = () => {
     // checks if user is logged in, currently doesnt refres when user logs out
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    // useEffect(() => {
-    //     {
-    //         axiosInstance.get('api/users/logged_in/').then((res) => {
-    //             if (res) {
-    //                 setIsLoggedIn(true);
-    //             }
-    //         })
-    //     } 
-    // }, [])
-
     // styles block
 
     const navbarStyle = {
@@ -72,9 +62,12 @@ const Navbar = () => {
                     <Tab label='Home' component={Link} to='/' />
                     <Tab label='Categories' component={Link} to='#' />
                     { isLoggedIn ? 
-                    <Tab label='logout' onClick={handleLogout} /> 
-                    : <Tab label='Login' component={Link} to='/login/' /> }
-                    <Tab label='create_account' component={Link} to='users/create/' />
+                    <Tab label='logout' onClick={handleLogout} />
+                    : <div>
+                        <Tab label='Login' component={Link} to='/login/' />
+                        <Tab label='create_account' component={Link} to='users/create/' />
+                    </div> }
+
                     <Tab label={username} component={Link} to={`/users/profile/${username}/`} />
                 </Tabs>
             </AppBar>

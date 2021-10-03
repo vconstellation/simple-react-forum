@@ -28,6 +28,7 @@ const Login = () => {
                     axiosInstance.defaults.headers['Authorization'] = "JWT" + res.data.access;
                     localStorage.setItem('access_token', res.data.access)
                     localStorage.setItem('refresh_token', res.data.refresh)
+                    window.location.reload()
                 }
             )
         } catch (e) {

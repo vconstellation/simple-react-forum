@@ -104,16 +104,10 @@ const Posts = () => {
                             </Grid>
                         </Grid>
                         <p> {item.msg }</p>
-
-
-
-{/* 
-                        Author: { item.username }
-                        <br />
-                        {item.msg}
-                        <br />
-                        { username == item.username ? <UpdatePost value={item.id} />  : 'not hello' }
-                        <br /> */}
+                        <hr style={{border: 'dotted 1px'}} />
+                        <a style={{fontSize: 'small'}}>
+                            <p>Posted on: { item.created_at }</p>
+                        </a>
                         
                     </Typography>
                     
